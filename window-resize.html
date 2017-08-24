@@ -1,0 +1,49 @@
+<link rel="import" href="../polymer/polymer.html">
+
+<!--
+`window-resize`
+A Polymer element that manages data binding to window s height and width, during the resize window event.
+
+@demo demo/index.html 
+-->
+
+<dom-module id="window-resize">
+  <script>
+    Polymer({
+        is: "window-resize",
+        
+        properties: {
+            height: {
+                type: Number,
+                readOnly: true,
+                notify: true
+            },
+
+            width: {
+                type: Number,
+                readOnly: true,
+                notify: true
+            },
+        },
+
+        created: function() {
+            this._boundWindowResizeListener = this._windowResizeListener.bind(this);
+        },
+
+        attached: function() {
+            this._boundWindowResizeListener();
+            window.addEventListener('resize', this._boundWindowResizeListener);
+        },
+
+        detached: function() {
+            window.removeEventListener('resize', this._boundWindowResizeListener);
+        },
+
+        _windowResizeListener: function() {
+            this._setHeight(window.innerHeight);
+            this._setWidth(window.innerWidth);
+        }
+
+    });
+  </script>
+</dom-module>

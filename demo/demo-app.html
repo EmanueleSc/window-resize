@@ -1,0 +1,28 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../window-resize.html">
+
+
+<dom-module id="demo-app">
+  <template>
+    <style>
+      :host {
+          display: block;
+      }
+    </style>
+    
+    <window-resize height="{{height}}" width="{{width}}"></window-resize>
+    <h1>Try to resize the window</h1>
+    <h2>window innerHeight: {{height}}</h2>
+    <h2>window innerWidth: {{width}}</h2>
+  </template>
+
+  <script>
+    Polymer({
+      is: 'demo-app',
+      properties: {
+        height: Number,
+        wwidth: Number
+      }
+    });
+  </script>
+</dom-module>
